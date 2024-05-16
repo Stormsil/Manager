@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Manager.MVVM.View.DiscordBotView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="568" d:DesignWidth="744">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Label Content="Выключить" Foreground="White" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <ToggleButton x:Name="ToggleBot" Content="{Binding IsBotRunning, Converter={StaticResource BoolToStartStopConverter}}" Command="{Binding ToggleBotCommand}" Width="100" Height="30"/>
+            <Label Content="Включить" Foreground="White" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        </StackPanel>
+
+        <TextBox x:Name="ConsoleOutput" Text="{Binding ConsoleText, Mode=TwoWay}" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" IsReadOnly="True" Background="Black" Foreground="White" FontFamily="Consolas" FontSize="14" Grid.Row="1"/>
+        <TextBox x:Name="ConsoleInput" KeyDown="ConsoleInput_KeyDown" Background="Black" Foreground="White" FontFamily="Consolas" FontSize="14" Grid.Row="2"/>
+    </Grid>
+</UserControl>

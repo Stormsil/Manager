@@ -1,0 +1,51 @@
+﻿<prism:PrismApplication
+    x:Class="Manager.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:local="clr-namespace:Manager"
+    xmlns:view="clr-namespace:Manager.MVVM.View"
+    xmlns:viewModel="clr-namespace:Manager.MVVM.ViewModel"
+    xmlns:converters="clr-namespace:Manager.Converters">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="Theme/SubMenuButtonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ControlVMHomeViewModel}">
+                <view:ControlVMHomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ControlVMConsoleViewModel}">
+                <view:ControlVMConsoleView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ControlVMSettingsViewModel}">
+                <view:ControlVMSettingsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CreateVMNewViewModel}">
+                <view:CreateVMNewView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CreateVMConsoleViewModel}">
+                <view:CreateVMConsoleView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CreateVMRandomMacViewModel}">
+                <view:CreateVMRandomMacView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DiscordBotViewModel}">
+                <view:DiscordBotView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DBEditorViewModel}">
+                <view:DBEditorView/>
+            </DataTemplate>
+
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:BoolToStartStopConverter x:Key="BoolToStartStopConverter" />
+
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>
