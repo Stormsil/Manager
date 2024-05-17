@@ -18,6 +18,7 @@ namespace Manager.Core
 
         public async Task StartAsync(string token)
         {
+            Console.WriteLine("DiscordBotService: Initializing StartAsync.");
             var discordConfig = new DiscordConfiguration
             {
                 Token = token,
@@ -37,18 +38,33 @@ namespace Manager.Core
 
             LoadChannelKeywords();
 
+            Console.WriteLine("DiscordBotService: Connecting to Discord.");
             await _discordClient.ConnectAsync();
+            Console.WriteLine("DiscordBotService: Connected to Discord.");
         }
 
         public async Task StopAsync()
         {
-            await _discordClient.DisconnectAsync();
-            _discordClient.Dispose();
+            if (_discordClient != null)
+            {
+                try
+                {
+                    Console.WriteLine("DiscordBotService: Disconnecting bot...");
+                    await _discordClient.DisconnectAsync();
+                    _discordClient.Dispose();
+                    _discordClient = null; // Добавьте это, чтобы избежать повторных вызовов
+                    Console.WriteLine("DiscordBotService: Bot disconnected.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"DiscordBotService: Error disconnecting bot: {ex.Message}");
+                }
+            }
         }
 
         private Task OnReady(DiscordClient client, ReadyEventArgs e)
         {
-            Console.WriteLine($"Bot {client.CurrentUser.Username} has successfully connected to Discord!");
+            Console.WriteLine($"DiscordBotService: Bot {client.CurrentUser.Username} has successfully connected to Discord!");
             return Task.CompletedTask;
         }
 
@@ -86,15 +102,17 @@ namespace Manager.Core
 
         private void LoadChannelKeywords()
         {
-            var filePath = @"C:\Files\Discord Bot\channel_keywords.json";
+            var filePath = @"C:\Files\Manager\Discord\channel_keywords.json";
             if (File.Exists(filePath))
             {
                 var json = File.ReadAllText(filePath);
                 _channelKeywords = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(json);
+                Console.WriteLine("DiscordBotService: Loaded channel keywords.");
             }
             else
             {
                 _channelKeywords = new Dictionary<string, Dictionary<string, string>>();
+                Console.WriteLine("DiscordBotService: No channel keywords file found.");
             }
         }
     }

@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfUserControl = System.Windows.Controls.UserControl;
 
 namespace Manager.MVVM.View
 {
     /// <summary>
     /// Логика взаимодействия для DBEditorView.xaml
     /// </summary>
-    public partial class DBEditorView : UserControl
+    public partial class DBEditorView : WpfUserControl
     {
         public DBEditorView()
         {

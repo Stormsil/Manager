@@ -18,11 +18,19 @@ namespace Manager
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
+            if (e.ChangedButton == MouseButton.Left && e.ButtonState == MouseButtonState.Pressed)
             {
-                this.DragMove();
+                try
+                {
+                    this.DragMove();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    Console.WriteLine("Error during DragMove: " + ex.Message);
+                }
             }
         }
+
 
         private void ControlVM_Checked(object sender, RoutedEventArgs e)
         {
@@ -56,12 +64,12 @@ namespace Manager
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -8,12 +8,22 @@ namespace Manager.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? "Stop Bot" : "Start Bot";
+            Console.WriteLine($"BoolToStartStopConverter.Convert: value={value}");
+            if (value is bool boolValue)
+            {
+                return boolValue ? "Stop" : "Start";
+            }
+            return "Start";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"BoolToStartStopConverter.ConvertBack: value={value}");
+            if (value is string stringValue)
+            {
+                return stringValue == "Stop";
+            }
+            throw new NotSupportedException("ConvertBack is not supported.");
         }
     }
 }

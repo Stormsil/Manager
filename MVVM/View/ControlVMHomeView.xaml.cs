@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
+using WpfUserControl = System.Windows.Controls.UserControl;
+using WpfKeyEventArgs = System.Windows.Input.KeyEventArgs;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -18,7 +19,7 @@ namespace Manager.MVVM.View
     /// <summary>
     /// Логика взаимодействия для ControlVMHomeView.xaml
     /// </summary>
-    public partial class ControlVMHomeView : UserControl
+    public partial class ControlVMHomeView : WpfUserControl
     {
         public ControlVMHomeView()
         {

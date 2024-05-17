@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfUserControl = System.Windows.Controls.UserControl;
 
 namespace Manager.MVVM.View
 {
     /// <summary>
     /// Логика взаимодействия для CreateVMNewView.xaml
     /// </summary>
-    public partial class CreateVMNewView : UserControl
+    public partial class CreateVMNewView : WpfUserControl
     {
         public CreateVMNewView()
         {

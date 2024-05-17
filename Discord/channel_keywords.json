@@ -1,0 +1,28 @@
+{
+	"all-bots": {
+		"InventoryData": "farmlog-server-error",
+		"Горного дела": "professions-info",
+		"targeting your bot": "bots-targeted",
+		"Your bot died!": "bots-deaths",
+		"В банке": "guild-bank-info",
+		"Начинается плановое выключение": "startup-and-shutdown",
+		"запустился на сервере": "startup-and-reload",
+		"full stuck situation": "bots-full-stuck",
+		"whispered": "bots-whispered",
+		"WHISPERED": "bots-whispered",
+		"is offline now!": "startup-and-shutdown"
+	},
+	"all-start-errors": {
+		"успешно запущен": "startup-and-shutdown",
+		"successfully launched": "startup-and-shutdown",
+		"Account banned": "bans-info",
+		"Maybe licence expired": "startup-errors-important",
+		"SessionMaxLimit": "startup-errors",
+		"Failed Connect": "startup-errors",
+		"Failed Inject": "startup-errors",
+		"Crash": "startup-errors",
+		"within the allotted time": "startup-errors-important",
+		"unsuccessful login attempts": "startup-errors-important",
+		"Bot launch waiting time exceeded on": "startup-errors-important"
+	}
+}

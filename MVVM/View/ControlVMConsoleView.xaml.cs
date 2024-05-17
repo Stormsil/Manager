@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
+using WpfUserControl = System.Windows.Controls.UserControl; // Алиас для WPF UserControl
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -18,7 +18,7 @@ namespace Manager.MVVM.View
     /// <summary>
     /// Логика взаимодействия для ControlVMConsoleView.xaml
     /// </summary>
-    public partial class ControlVMConsoleView : UserControl
+    public partial class ControlVMConsoleView : WpfUserControl
     {
         public ControlVMConsoleView()
         {
