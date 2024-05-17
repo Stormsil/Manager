@@ -6,6 +6,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="568" d:DesignWidth="744">
     <Grid>
-        <Label Content="Создание VM - Консоль" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Создание VM - Консоль" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="10,10,0,0"/>
+
+        <TextBox x:Name="ConsoleOutput" 
+                 Grid.Row="1" 
+                 Foreground="White" 
+                 Background="Black" 
+                 FontFamily="Consolas" 
+                 FontSize="14" 
+                 IsReadOnly="True" 
+                 Text="{Binding ConsoleText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                 VerticalScrollBarVisibility="Auto"
+                 TextWrapping="Wrap"/>
     </Grid>
 </UserControl>

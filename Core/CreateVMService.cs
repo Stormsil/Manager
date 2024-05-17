@@ -72,7 +72,7 @@ namespace Manager.Core
                         File.Move(file, Path.Combine(newVmPath, Path.GetFileName(file)));
 
                     Directory.Delete(configFolder);
-                    updateProgress(10, "Создание завершено. Введите новое имя VM...");
+                    updateProgress(10, $"Создание завершено. Введите новое имя VM: {vmName}");
                 });
             }
             catch (Exception ex)
@@ -125,13 +125,19 @@ namespace Manager.Core
         {
             var driveC = new DriveInfo("C");
             double percentC = (double)driveC.TotalFreeSpace / driveC.TotalSize * 100;
-            string cDiskUsageInfo = $"Disk C: {driveC.TotalFreeSpace / 1024 / 1024 / 1024} GB free of {driveC.TotalSize / 1024 / 1024 / 1024} GB";
+            string cDiskUsageInfo = $"Диск C: {driveC.TotalFreeSpace / 1024 / 1024 / 1024} GB свободно из {driveC.TotalSize / 1024 / 1024 / 1024} GB";
 
             var driveD = new DriveInfo("D");
             double percentD = (double)driveD.TotalFreeSpace / driveD.TotalSize * 100;
-            string dDiskUsageInfo = $"Disk D: {driveD.TotalFreeSpace / 1024 / 1024 / 1024} GB free of {driveD.TotalSize / 1024 / 1024 / 1024} GB";
+            string dDiskUsageInfo = $"Диск D: {driveD.TotalFreeSpace / 1024 / 1024 / 1024} GB свободно из {driveD.TotalSize / 1024 / 1024 / 1024} GB";
 
             return (100 - percentC, cDiskUsageInfo, 100 - percentD, dDiskUsageInfo);
+        }
+
+        public int GetConfigCount()
+        {
+            var folders = Directory.GetDirectories(configDirectory);
+            return folders.Length;
         }
     }
 }

@@ -3,18 +3,22 @@ using Prism.Mvvm;
 using System;
 using System.Threading.Tasks;
 using Manager.Core;
+using Manager.MVVM.ViewModel;
 
 namespace Manager.MVVM.ViewModel
 {
     public class CreateVMNewViewModel : BindableBase
     {
         private readonly CreateVMService _createVMService;
+        private readonly CreateVMConsoleViewModel _consoleViewModel;
 
-        public CreateVMNewViewModel(CreateVMService createVMService)
+        public CreateVMNewViewModel(CreateVMService createVMService, CreateVMConsoleViewModel consoleViewModel)
         {
             _createVMService = createVMService;
+            _consoleViewModel = consoleViewModel;
             CreateVMCommand = new DelegateCommand(async () => await CreateVM(VMName));
             UpdateDiskUsage();
+            UpdateConfigCount();
         }
 
         private string _selectedDisk;
@@ -87,6 +91,13 @@ namespace Manager.MVVM.ViewModel
             set => SetProperty(ref _isProgressBarVisible, value);
         }
 
+        private int _configCount;
+        public int ConfigCount
+        {
+            get => _configCount;
+            set => SetProperty(ref _configCount, value);
+        }
+
         public DelegateCommand CreateVMCommand { get; }
 
         public async Task CreateVM(string vmName)
@@ -97,19 +108,28 @@ namespace Manager.MVVM.ViewModel
                 {
                     ProgressValue = 0;
                     IsProgressBarVisible = true;
-                    await _createVMService.CreateVMAsync(vmName, UpdateProgress);
+                    _consoleViewModel.AppendToConsole("Начало создания VM...");
+                    await _createVMService.CreateVMAsync(vmName, (step, description) =>
+                    {
+                        UpdateProgress(step, description);
+                        _consoleViewModel.AppendToConsole(description);
+                    });
+                    _consoleViewModel.AppendToConsole("Создание VM завершено.");
                 }
                 catch (Exception ex)
                 {
+                    _consoleViewModel.AppendToConsole($"Ошибка при создании VM: {ex.Message}");
                 }
                 finally
                 {
                     // Обновить использование диска после создания VM
                     UpdateDiskUsage();
+                    UpdateConfigCount(); // обновить количество конфигов
                 }
             }
             else
             {
+                _consoleViewModel.AppendToConsole("Некорректное имя VM.");
             }
         }
 
@@ -118,9 +138,11 @@ namespace Manager.MVVM.ViewModel
             try
             {
                 _createVMService.SetVmDirectory(selectedDisk);
+                _consoleViewModel.AppendToConsole($"Выбран диск: {selectedDisk}");
             }
             catch (Exception ex)
             {
+                _consoleViewModel.AppendToConsole($"Ошибка при выборе диска: {ex.Message}");
             }
         }
 
@@ -137,6 +159,11 @@ namespace Manager.MVVM.ViewModel
             DiskCInfo = diskUsage.CDiskUsageInfo;
             DiskDProgress = diskUsage.DDiskUsagePercentage;
             DiskDInfo = diskUsage.DDiskUsageInfo;
+        }
+
+        private void UpdateConfigCount()
+        {
+            ConfigCount = _createVMService.GetConfigCount();
         }
     }
 }
