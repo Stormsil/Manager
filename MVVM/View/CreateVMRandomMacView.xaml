@@ -1,11 +1,38 @@
-﻿<UserControl x:Class="Manager.MVVM.View.CreateVMRandomMacView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="568" d:DesignWidth="744">
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    x:Class="Manager.MVVM.View.CreateVMRandomMacView"
+    mc:Ignorable="d"
+    d:DesignHeight="568" d:DesignWidth="744">
+
+    <UserControl.Resources>
+        <Style x:Key="CustomSimpleButtonStyle" TargetType="{x:Type dx:SimpleButton}">
+            <Setter Property="Background" Value="#FF2D3031"/>
+            <Setter Property="BorderBrush" Value="#FFFF7912"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFF7912"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <Label Content="Создание VM - Random Mac Address" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="46"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Mac Address" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="White" FontSize="18" Height="30" Width="111"/>
+        <TextBox Text="{Binding MacAddress}" IsReadOnly="True" Foreground="White" Background="Black" BorderBrush="#FFFF7912" Margin="269,43,0,418" HorizontalAlignment="Left" Width="399" Grid.Row="1" FontSize="18"/>
+        <Label Content="Вывод" HorizontalAlignment="Left" Margin="269,10,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="18" Width="78" Height="30"/>
+        <dx:SimpleButton Style="{StaticResource CustomSimpleButtonStyle}" Content="Get MAC" Command="{Binding GetMacAddressCommand}" Foreground="White" HorizontalAlignment="Left" Margin="64,43,0,418" Grid.Row="1" Width="167" FontSize="24" Glyph="{dx:DXImage SvgImages/Business Objects/BO_StateMachine.svg}"/>
     </Grid>
 </UserControl>
