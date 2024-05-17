@@ -3,6 +3,7 @@ using Prism.DryIoc;
 using System.Windows;
 using Manager.MVVM.View;
 using Manager.MVVM.ViewModel;
+using Manager.Core;
 using Prism.Modularity;
 
 namespace Manager
@@ -25,8 +26,10 @@ namespace Manager
             // Регистрация MainWindow и MainViewModel
             containerRegistry.Register<MainWindow>();
             containerRegistry.Register<MainViewModel>();
-        }
 
+            // Регистрация CreateVMService
+            containerRegistry.RegisterSingleton<CreateVMService>();
+        }
 
         protected override Window CreateShell()
         {

@@ -3,9 +3,61 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="568" d:DesignWidth="744">
-    <Grid>
-        <Label Content="Создание VM - Новая VM" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+    <Grid Margin="30" Cursor="">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Name" FontSize="18" FontFamily="Arial" Foreground="White" Margin="0,0,0,5" FontWeight="Bold" VerticalAlignment="Center"/>
+        <TextBox x:Name="NameTextBox" Text="{Binding VMName}" Grid.Row="1" FontSize="20" FontFamily="Arial" Width="400" Height="32" Cursor="Hand"
+             HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+
+        <TextBlock Text="Disk" Grid.Column="1" FontSize="18" FontFamily="Arial" Foreground="White" Margin="20,0,0,5" FontWeight="Bold" VerticalAlignment="Center"/>
+        <ComboBox x:Name="DiskComboBox" SelectedValue="{Binding SelectedDisk, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="20,0,0,0" Width="122" 
+              Foreground="Black" BorderBrush="White" OpacityMask="White" FontSize="24" HorizontalAlignment="Left"
+              VerticalAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" Height="32">
+            <ComboBoxItem Content="C:"/>
+            <ComboBoxItem Content="D:"/>
+        </ComboBox>
+
+        <StackPanel Grid.Row="3" Margin="0,20,10,0">
+            <TextBlock Text="{Binding DiskCInfo}" Foreground="White" FontSize="14" />
+            <ProgressBar Value="{Binding DiskCProgress}" Height="20" Margin="0,0,0,5"/>
+            <TextBlock Text="{Binding DiskDInfo}" Foreground="White" FontSize="14" />
+            <ProgressBar Value="{Binding DiskDProgress}" Height="20" Margin="0,0,0,5"/>
+        </StackPanel>
+
+        <Grid Grid.Row="4" Grid.ColumnSpan="2" Margin="0,20,0,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="{Binding ProgressText}" FontSize="16" FontFamily="Arial" Foreground="White" Margin="0,0,0,5"/>
+            <ProgressBar Value="{Binding ProgressValue}" Grid.Row="1" Height="30" Margin="0,0,15,0" Visibility="{Binding IsProgressBarVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <Button Content="Create" Grid.Row="1" Grid.Column="1" Padding="30,10" 
+                Command="{Binding CreateVMCommand}" Foreground="White" FontFamily="Arial" FontWeight="Bold" BorderThickness="0"
+                FontSize="20" Background="#FFFE5029" Click="CreateButton_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="6"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
     </Grid>
 </UserControl>
