@@ -3,19 +3,16 @@ using Prism.Mvvm;
 using System;
 using System.Threading.Tasks;
 using Manager.Core;
-using Manager.MVVM.ViewModel;
 
 namespace Manager.MVVM.ViewModel
 {
     public class CreateVMNewViewModel : BindableBase
     {
         private readonly CreateVMService _createVMService;
-        private readonly CreateVMConsoleViewModel _consoleViewModel;
 
-        public CreateVMNewViewModel(CreateVMService createVMService, CreateVMConsoleViewModel consoleViewModel)
+        public CreateVMNewViewModel(CreateVMService createVMService)
         {
             _createVMService = createVMService;
-            _consoleViewModel = consoleViewModel;
             CreateVMCommand = new DelegateCommand(async () => await CreateVM(VMName));
             UpdateDiskUsage();
             UpdateConfigCount();
@@ -108,17 +105,14 @@ namespace Manager.MVVM.ViewModel
                 {
                     ProgressValue = 0;
                     IsProgressBarVisible = true;
-                    _consoleViewModel.AppendToConsole("Начало создания VM...");
                     await _createVMService.CreateVMAsync(vmName, (step, description) =>
                     {
                         UpdateProgress(step, description);
-                        _consoleViewModel.AppendToConsole(description);
                     });
-                    _consoleViewModel.AppendToConsole("Создание VM завершено.");
                 }
                 catch (Exception ex)
                 {
-                    _consoleViewModel.AppendToConsole($"Ошибка при создании VM: {ex.Message}");
+                    // Обработка ошибки при создании VM
                 }
                 finally
                 {
@@ -129,7 +123,7 @@ namespace Manager.MVVM.ViewModel
             }
             else
             {
-                _consoleViewModel.AppendToConsole("Некорректное имя VM.");
+                // Обработка некорректного имени VM
             }
         }
 
@@ -138,11 +132,10 @@ namespace Manager.MVVM.ViewModel
             try
             {
                 _createVMService.SetVmDirectory(selectedDisk);
-                _consoleViewModel.AppendToConsole($"Выбран диск: {selectedDisk}");
             }
             catch (Exception ex)
             {
-                _consoleViewModel.AppendToConsole($"Ошибка при выборе диска: {ex.Message}");
+                // Обработка ошибки при выборе диска
             }
         }
 

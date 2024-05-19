@@ -15,13 +15,10 @@ namespace Manager
             // Регистрация типов для внедрения зависимостей
             containerRegistry.RegisterForNavigation<HomeView, HomeViewModel>();
             containerRegistry.RegisterForNavigation<ControlVMHomeView, ControlVMHomeViewModel>();
-            containerRegistry.RegisterForNavigation<ControlVMConsoleView, ControlVMConsoleViewModel>();
             containerRegistry.RegisterForNavigation<ControlVMSettingsView, ControlVMSettingsViewModel>();
             containerRegistry.RegisterForNavigation<CreateVMNewView, CreateVMNewViewModel>();
-            containerRegistry.RegisterForNavigation<CreateVMConsoleView, CreateVMConsoleViewModel>();
             containerRegistry.RegisterForNavigation<CreateVMRandomMacView, CreateVMRandomMacViewModel>();
             containerRegistry.RegisterForNavigation<DiscordBotView, DiscordBotViewModel>();
-            containerRegistry.RegisterForNavigation<DBEditorView, DBEditorViewModel>();
 
             // Регистрация MainWindow и MainViewModel
             containerRegistry.Register<MainWindow>();

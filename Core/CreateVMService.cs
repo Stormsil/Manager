@@ -90,9 +90,8 @@ namespace Manager.Core
                     File.Copy(sourceFile, destinationFile, true);
                     return;
                 }
-                catch (IOException ex) when (i < retryCount - 1)
+                catch (IOException) when (i < retryCount - 1)
                 {
-                    Console.WriteLine($"Ошибка при копировании файла. Попытка {i + 1} из {retryCount}. Ожидание перед повторной попыткой...");
                     await Task.Delay(delayMilliseconds);
                 }
             }

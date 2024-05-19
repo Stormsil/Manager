@@ -21,26 +21,17 @@
             <DataTemplate DataType="{x:Type viewModel:ControlVMHomeViewModel}">
                 <view:ControlVMHomeView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:ControlVMConsoleViewModel}">
-                <view:ControlVMConsoleView/>
-            </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:ControlVMSettingsViewModel}">
                 <view:ControlVMSettingsView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:CreateVMNewViewModel}">
                 <view:CreateVMNewView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:CreateVMConsoleViewModel}">
-                <view:CreateVMConsoleView/>
-            </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:CreateVMRandomMacViewModel}">
                 <view:CreateVMRandomMacView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:DiscordBotViewModel}">
                 <view:DiscordBotView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:DBEditorViewModel}">
-                <view:DBEditorView/>
             </DataTemplate>
 
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

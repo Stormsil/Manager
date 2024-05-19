@@ -57,7 +57,6 @@
                 <RadioButton Content="Управление VM" Tag="&#xE7F4;" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Checked="ControlVM_Checked"/>
                 <StackPanel x:Name="ControlVMSubMenu" Visibility="{Binding IsControlVMSubMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Button Content="Панель" Tag="&#xE7F4;" Command="{Binding ControlVMHomeCommand}" Style="{StaticResource SubMenuButtonStyle}" />
-                    <Button Content="Консоль" Tag="&#xE756;" Command="{Binding ControlVMConsoleCommand}" Style="{StaticResource SubMenuButtonStyle}" />
                     <Button Content="Настройки" Tag="&#xE713;" Command="{Binding ControlVMSettingsCommand}" Style="{StaticResource SubMenuButtonStyle}" />
                 </StackPanel>
 
@@ -65,13 +64,11 @@
                 <RadioButton Content="Создание VM" Tag="&#xE710;" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Checked="CreateVM_Checked"/>
                 <StackPanel x:Name="CreateVMSubMenu" Visibility="{Binding IsCreateVMSubMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Button Content="Новая VM" Tag="&#xE7C3;" Command="{Binding CreateVMNewCommand}" Style="{StaticResource SubMenuButtonStyle}" />
-                    <Button Content="Консоль" Tag="&#xE756;" Command="{Binding CreateVMConsoleCommand}" Style="{StaticResource SubMenuButtonStyle}" />
                     <Button Content="Mac Address" Tag="&#xE8B1;" Command="{Binding CreateVMRandomMacCommand}" Style="{StaticResource SubMenuButtonStyle}" />
                 </StackPanel>
 
                 <!-- Остальные кнопки -->
                 <RadioButton Content="Discord бот" Tag="&#xE915;" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding DiscordBotViewCommand}" Checked="MenuButton_Checked"/>
-                <RadioButton Content="Редактор БД" Tag="&#xE915;" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding DBEditorViewCommand}" Checked="MenuButton_Checked"/>
                 <RadioButton Content="Выход" Tag="&#xE7E8;" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Click="Exit_Click" Margin="0,12,0,12" Height="36"/>
             </StackPanel>
 

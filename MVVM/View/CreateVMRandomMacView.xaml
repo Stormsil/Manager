@@ -31,7 +31,7 @@
         </Grid.RowDefinitions>
 
         <Label Content="Mac Address" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="White" FontSize="18" Height="30" Width="111"/>
-        <TextBox Text="{Binding MacAddress}" IsReadOnly="True" Foreground="White" Background="Black" BorderBrush="#FFFF7912" Margin="269,43,0,418" HorizontalAlignment="Left" Width="399" Grid.Row="1" FontSize="18"/>
+        <TextBox Text="{Binding MacAddress}" IsReadOnly="True" Foreground="White" Background="Black" BorderBrush="#FFFF7912" Margin="269,43,0,418" HorizontalAlignment="Left" Width="399" Grid.Row="1" FontSize="36" TextAlignment="Center"/>
         <Label Content="Вывод" HorizontalAlignment="Left" Margin="269,10,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="18" Width="78" Height="30"/>
         <dx:SimpleButton Style="{StaticResource CustomSimpleButtonStyle}" Content="Get MAC" Command="{Binding GetMacAddressCommand}" Foreground="White" HorizontalAlignment="Left" Margin="64,43,0,418" Grid.Row="1" Width="167" FontSize="24" Glyph="{dx:DXImage SvgImages/Business Objects/BO_StateMachine.svg}"/>
     </Grid>
