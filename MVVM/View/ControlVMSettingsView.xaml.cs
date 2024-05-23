@@ -1,29 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WpfUserControl = System.Windows.Controls.UserControl;
+﻿using System.Windows.Controls; // Используем правильный UserControl
+using Manager.Core;
+using Manager.MVVM.ViewModel;
 
 namespace Manager.MVVM.View
 {
-    /// <summary>
-    /// Логика взаимодействия для ControlVMSettingsView.xaml
-    /// </summary>
-    public partial class ControlVMSettingsView : WpfUserControl
+    public partial class ControlVMSettingsView : System.Windows.Controls.UserControl // Указываем полное пространство имен
     {
         public ControlVMSettingsView()
         {
             InitializeComponent();
+            var schedulerService = new SchedulerService();
+            var vmService = new VMService(schedulerService); // Создаем экземпляр VMService
+            DataContext = new ControlVMSettingsViewModel(schedulerService, vmService); // Передаем vmService в конструктор
         }
     }
 }

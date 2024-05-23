@@ -1,0 +1,19 @@
+{
+  "VMs": null,
+  "Schedule": {
+    "DayStart1": "03:48",
+    "DayEnd1": "03:50",
+    "DayStart2": "03:57",
+    "DayEnd2": "03:59",
+    "NightStart1": "04:00",
+    "NightEnd1": "04:04",
+    "NightStart2": "02:12",
+    "NightEnd2": "03:47"
+  },
+  "Grid": {
+    "Rows": 2,
+    "Columns": 4,
+    "CellWidth": 380,
+    "CellHeight": 560
+  }
+}

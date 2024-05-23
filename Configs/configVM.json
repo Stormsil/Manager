@@ -1,0 +1,25 @@
+{
+	"general": {
+		"vmrunPath": "C:\\Program Files (x86)\\VMware\\VMware Workstation\\vmrun.exe"
+	},
+	"vms": [
+		{
+			"name": "Day_Amnennar_Kellerik_2_L17",
+			"disk": "D",
+			"cell": 1,
+			"status": "Active"
+		},
+		{
+			"name": "Day_Ashbringer_Shainell_2_L15",
+			"disk": "D",
+			"cell": 2,
+			"status": "Active"
+		},
+		{
+			"name": "Night_Amnennar_Katranac_2_L18",
+			"disk": "D",
+			"cell": 3,
+			"status": "Active"
+		}
+	]
+}

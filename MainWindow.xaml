@@ -56,15 +56,15 @@
                 <!-- Управление VM с подменю -->
                 <RadioButton Content="Управление VM" Tag="&#xE7F4;" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Checked="ControlVM_Checked"/>
                 <StackPanel x:Name="ControlVMSubMenu" Visibility="{Binding IsControlVMSubMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Button Content="Панель" Tag="&#xE7F4;" Command="{Binding ControlVMHomeCommand}" Style="{StaticResource SubMenuButtonStyle}" />
-                    <Button Content="Настройки" Tag="&#xE713;" Command="{Binding ControlVMSettingsCommand}" Style="{StaticResource SubMenuButtonStyle}" />
+                    <Button Content="Панель" Tag="&#xE7F4;" Command="{Binding ControlVMHomeCommand}" Style="{StaticResource SubMenuButtonStyle}" Height="30" BorderThickness="10,1,10,1" />
+                    <Button Content="Настройки" Tag="&#xE713;" Command="{Binding ControlVMSettingsCommand}" Style="{StaticResource SubMenuButtonStyle}" Height="30" Width="138" />
                 </StackPanel>
 
                 <!-- Создание VM с подменю -->
                 <RadioButton Content="Создание VM" Tag="&#xE710;" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Checked="CreateVM_Checked"/>
                 <StackPanel x:Name="CreateVMSubMenu" Visibility="{Binding IsCreateVMSubMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Button Content="Новая VM" Tag="&#xE7C3;" Command="{Binding CreateVMNewCommand}" Style="{StaticResource SubMenuButtonStyle}" />
-                    <Button Content="Mac Address" Tag="&#xE8B1;" Command="{Binding CreateVMRandomMacCommand}" Style="{StaticResource SubMenuButtonStyle}" />
+                    <Button Content="Новая VM" Tag="&#xE7C3;" Command="{Binding CreateVMNewCommand}" Style="{StaticResource SubMenuButtonStyle}" Height="30" />
+                    <Button Content="Mac Address" Tag="&#xE8B1;" Command="{Binding CreateVMRandomMacCommand}" Style="{StaticResource SubMenuButtonStyle}" Height="30" />
                 </StackPanel>
 
                 <!-- Остальные кнопки -->
