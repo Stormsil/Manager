@@ -42,9 +42,9 @@
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="80"/>
                 <DataGridTextColumn Header="Shift" Binding="{Binding Shift}" Width="80"/>
                 <DataGridTextColumn Header="Online status" Binding="{Binding OnlineStatus}" Width="100"/>
-                <DataGridTextColumn Header="VM Name" Binding="{Binding Name}" Width="250"/>
+                <DataGridTextColumn Header="VM Name" Binding="{Binding Name}" Width="240"/>
                 <DataGridTextColumn Header="Disk" Binding="{Binding Disk}" Width="60"/>
-                <DataGridTextColumn Header="LAN" Binding="{Binding LAN}" Width="80"/>
+                <DataGridTextColumn Header="LAN" Binding="{Binding LAN}" Width="60"/>
                 <DataGridTextColumn Header="Cell" Binding="{Binding Cell}" Width="80"/>
             </DataGrid.Columns>
         </DataGrid>
