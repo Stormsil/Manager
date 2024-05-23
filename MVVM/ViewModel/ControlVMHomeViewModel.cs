@@ -3,6 +3,7 @@ using Manager.Core.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -19,6 +20,7 @@ namespace Manager.MVVM.ViewModel
         private string _nightSchedule;
         private DispatcherTimer _timer;
         private bool _isAutoRotationEnabled;
+        private bool _isRotationInProgress;
 
         public ObservableCollection<VM> VMs
         {
@@ -95,7 +97,7 @@ namespace Manager.MVVM.ViewModel
             CurrentShift = _schedulerService.GetCurrentShift();
             NextRotationTime = CalculateTimeToNextRotation();
 
-            RefreshCommand = new RelayCommand(_ => RefreshData());
+            RefreshCommand = new RelayCommand(async _ => await RefreshDataAsync());
             ArrangeWindowsCommand = new RelayCommand(_ => ArrangeWindows());
             ToggleRotationCommand = new RelayCommand(_ => ToggleRotation());
 
@@ -105,8 +107,8 @@ namespace Manager.MVVM.ViewModel
         private void StartTimer()
         {
             _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(5);
-            _timer.Tick += (sender, args) => RefreshData();
+            _timer.Interval = TimeSpan.FromSeconds(5); // Check every minute
+            _timer.Tick += async (sender, args) => await RefreshDataAsync();
             _timer.Start();
         }
 
@@ -130,7 +132,7 @@ namespace Manager.MVVM.ViewModel
             return $"{start1:HH:mm} - {end1:HH:mm}, {start2:HH:mm} - {end2:HH:mm}";
         }
 
-        private void RefreshData()
+        private async Task RefreshDataAsync()
         {
             var vms = _vmService.GetVMs();
             var currentShift = _schedulerService.GetCurrentShift();
@@ -145,9 +147,11 @@ namespace Manager.MVVM.ViewModel
             CurrentShift = _schedulerService.GetCurrentShift();
             NextRotationTime = CalculateTimeToNextRotation();
 
-            if (_isAutoRotationEnabled)
+            if (_isAutoRotationEnabled && !_isRotationInProgress)
             {
-                _vmService.ManageVMs(CurrentShift);
+                _isRotationInProgress = true;
+                await _vmService.ManageVMsAsync(CurrentShift);
+                _isRotationInProgress = false;
             }
         }
 

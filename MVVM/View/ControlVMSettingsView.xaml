@@ -23,27 +23,28 @@
     </UserControl.Resources>
     <Grid>
         <dx:SimpleButton Style="{StaticResource CustomSimpleButtonStyle}" Command="{Binding SaveSettingsCommand}"
-                         Content="Сохранить" Width="150" Height="40" Margin="527,259,0,0"
+                         Content="Сохранить" Width="150" Height="40" Margin="570,223,0,0"
                          Padding="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
-        <TextBlock Text="Настройка расписания:" FontFamily="Arial Black" Foreground="White" Margin="446,25,121,518"/>
-        <TextBlock Text="День :" Foreground="White" FontFamily="Arial Black" Margin="445,55,257,488"/>
-        <TextBox HorizontalAlignment="Left" Margin="446,80,0,0" TextWrapping="Wrap" Text="{Binding DaySchedule, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="231"/>
-        <TextBlock Text="Ночь :" Foreground="White" FontFamily="Arial Black" Margin="445,139,257,404"/>
-        <TextBox HorizontalAlignment="Left" Margin="445,168,0,0" TextWrapping="Wrap" Text="{Binding NightSchedule, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="232"/>
-        <TextBlock Text="Настройка расположения:" FontFamily="Arial Black" Foreground="White" Margin="12,24,538,519"/>
-        <TextBlock Text="Количество строк :" Foreground="White" FontFamily="Arial Black" Margin="12,56,593,487"/>
-        <TextBox HorizontalAlignment="Left" Margin="12,80,0,0" TextWrapping="Wrap" Text="{Binding GridConfig.Rows, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="162"/>
-        <TextBlock Text="Количество столбцов :" Foreground="White" FontFamily="Arial Black" Margin="195,55,384,488"/>
-        <TextBox HorizontalAlignment="Left" Margin="195,80,0,0" TextWrapping="Wrap" Text="{Binding GridConfig.Columns, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="162"/>
-        <TextBlock Text="Ширина ячейки :" Foreground="White" FontFamily="Arial Black" Margin="14,143,610,400"/>
-        <TextBox HorizontalAlignment="Left" Margin="12,168,0,0" TextWrapping="Wrap" Text="{Binding GridConfig.CellWidth, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="162"/>
-        <TextBlock Text="Высота ячейки :" Foreground="White" FontFamily="Arial Black" Margin="197,143,427,400"/>
-        <TextBox HorizontalAlignment="Left" Margin="197,168,0,0" TextWrapping="Wrap" Text="{Binding GridConfig.CellHeight, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="162"/>
+        <TextBlock Text="Настройка расписания:" FontFamily="Arial Black" Foreground="White" Margin="293,53,274,489"/>
+        <TextBlock Text="День :" Foreground="White" FontFamily="Arial Black" Margin="293,89,409,454"/>
+        <TextBox HorizontalAlignment="Left" Margin="293,114,0,0" TextWrapping="Wrap" Text="{Binding DaySchedule, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="188" Background="{x:Null}" BorderBrush="#FF2D3031" Foreground="White" CaretBrush="White"/>
+        <TextBlock Text="Ночь :" Foreground="White" FontFamily="Arial Black" Margin="294,143,408,408"/>
+        <TextBox HorizontalAlignment="Left" Margin="294,167,0,0" TextWrapping="Wrap" Text="{Binding NightSchedule, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="188" Background="{x:Null}" BorderBrush="#FF2D3031" Foreground="White" CaretBrush="White"/>
+        <TextBlock Text="Настройка расположения:" FontFamily="Arial Black" Foreground="White" Margin="10,54,540,490"/>
+        <TextBlock Text="N строк :" Foreground="White" FontFamily="Arial Black" Margin="10,90,595,453"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,114,0,0" TextWrapping="Wrap" Text="{Binding GridConfig.Rows, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="97" Background="{x:Null}" BorderBrush="#FF2D3031" Foreground="White" CaretBrush="White"/>
+        <TextBlock Text="N столбцов :" Foreground="White" FontFamily="Arial Black" Margin="10,142,569,401"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,167,0,0" TextWrapping="Wrap" Text="{Binding GridConfig.Columns, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="104" Background="{x:Null}" BorderBrush="#FF2D3031" Foreground="White" CaretBrush="White"/>
+        <TextBlock Text="L ячейки :" Foreground="White" FontFamily="Arial Black" Margin="149,91,475,452"/>
+        <TextBox HorizontalAlignment="Left" Margin="149,115,0,0" TextWrapping="Wrap" Text="{Binding GridConfig.CellWidth, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="95" Background="{x:Null}" BorderBrush="#FF2D3031" Foreground="White" CaretBrush="White"/>
+        <TextBlock Text="H ячейки :" Foreground="White" FontFamily="Arial Black" Margin="149,142,475,401"/>
+        <TextBox HorizontalAlignment="Left" Margin="150,166,0,0" TextWrapping="Wrap" Text="{Binding GridConfig.CellHeight, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="100" Background="{x:Null}" BorderBrush="#FF2D3031" Foreground="White" CaretBrush="White"/>
         <dx:SimpleButton Style="{StaticResource CustomSimpleButtonStyle}" Command="{Binding OpenConfigCommand}"
-                         Content="Открыть конфиг настроек" Width="195" Height="40" Margin="292,259,0,0"
+                         Content="Открыть конфиг настроек" Width="195" Height="40" Margin="525,148,0,0"
                          Padding="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
         <dx:SimpleButton Style="{StaticResource CustomSimpleButtonStyle}" Command="{Binding OpenVMConfigCommand}"
-                         Content="Открыть конфиг VM" Width="195" Height="40" Margin="62,259,0,0"
+                         Content="Открыть конфиг VM" Width="195" Height="40" Margin="525,96,0,0"
                          Padding="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Управление VM - Настройки" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18" Height="30" Width="247"/>
     </Grid>
 </UserControl>

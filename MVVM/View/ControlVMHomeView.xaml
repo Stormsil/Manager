@@ -22,9 +22,9 @@
         </Style>
     </UserControl.Resources>
     <Grid Height="568" VerticalAlignment="Top">
-        <DataGrid Margin="12,114,10,82" x:Name="dataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
+        <DataGrid Margin="12,109,10,42" x:Name="dataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
                   ItemsSource="{Binding VMs}"
-                  Background="#FF191919" Foreground="Black" BorderBrush="#FF191919" HeadersVisibility="Column"
+                  Background="#FF191919" Foreground="White" BorderBrush="#FF191919" HeadersVisibility="Column"
                   HorizontalGridLinesBrush="#FF424242" VerticalGridLinesBrush="#FF424242" RowBackground="#FF2D3031"
                   AlternatingRowBackground="#FF424242">
             <DataGrid.Resources>
@@ -42,34 +42,33 @@
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="80"/>
                 <DataGridTextColumn Header="Shift" Binding="{Binding Shift}" Width="80"/>
                 <DataGridTextColumn Header="Online status" Binding="{Binding OnlineStatus}" Width="100"/>
-                <DataGridTextColumn Header="VM Name" Binding="{Binding Name}" Width="220"/>
+                <DataGridTextColumn Header="VM Name" Binding="{Binding Name}" Width="250"/>
                 <DataGridTextColumn Header="Disk" Binding="{Binding Disk}" Width="60"/>
                 <DataGridTextColumn Header="LAN" Binding="{Binding LAN}" Width="80"/>
                 <DataGridTextColumn Header="Cell" Binding="{Binding Cell}" Width="80"/>
             </DataGrid.Columns>
         </DataGrid>
         <dx:SimpleButton Style="{StaticResource CustomSimpleButtonStyle}" Command="{Binding RefreshCommand}"
-                         Content="Обновить данные" Width="150" Height="44" Margin="12,504,0,0"
+                         Content="Обновить данные" Width="150" Height="40" Margin="136,52,0,0"
                          Padding="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
         <dx:SimpleButton Style="{StaticResource CustomSimpleButtonStyle}" Command="{Binding ArrangeWindowsCommand}"
-                         Content="Расположить окна" Width="150" Height="44" Margin="187,504,0,0"
-                         Padding="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
-        <TextBlock Text="Текущая смена:" FontFamily="Arial Black" Foreground="White" Margin="12,24,610,519"/>
-        <TextBlock Text="Включение / Выключение" FontFamily="Arial Black" Foreground="White" Margin="534,496,23,47"/>
-        <TextBlock Text="День:" Foreground="White" FontFamily="Arial Black" Margin="487,24,215,519"/>
-        <TextBlock Text="Ночь:" Foreground="White" FontFamily="Arial Black" Margin="487,55,215,488"/>
-        <TextBlock Text="До следующей ротации:" FontFamily="Arial Black" Foreground="White" Margin="12,54,560,489"/>
-        <TextBlock Text="{Binding NextRotationTime}" FontFamily="Arial Black" Foreground="White" Margin="189,54,463,489"/>
-        <TextBlock Text="{Binding CurrentShift}" FontFamily="Arial Black" Foreground="White" Margin="139,24,509,519"/>
-        <TextBlock Text="{Binding DaySchedule}" Foreground="White" FontFamily="Arial Black" Margin="534,24,-12,519"/>
-        <TextBlock Text="{Binding NightSchedule}" Foreground="White" FontFamily="Arial Black" Margin="534,56,-24,487"/>
+                         Content="Расположить окна" Width="150" Height="40" Margin="0,52,0,0"
+                         Padding="10,5" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock Text="Текущая смена:" FontFamily="Arial Black" Foreground="White" Margin="13,533,609,10"/>
+        <TextBlock Text="День:" Foreground="White" FontFamily="Arial Black" Margin="508,45,194,498"/>
+        <TextBlock Text="Ночь:" Foreground="White" FontFamily="Arial Black" Margin="508,76,194,467"/>
+        <TextBlock Text="До следующей ротации:" FontFamily="Arial Black" Foreground="White" Margin="201,533,371,10"/>
+        <TextBlock Text="{Binding NextRotationTime}" FontFamily="Arial Black" Foreground="White" Margin="378,533,274,10"/>
+        <TextBlock Text="{Binding CurrentShift}" FontFamily="Arial Black" Foreground="White" Margin="127,533,521,10"/>
+        <TextBlock Text="{Binding DaySchedule}" Foreground="White" FontFamily="Arial Black" Margin="554,45,-32,498"/>
+        <TextBlock Text="{Binding NightSchedule}" Foreground="White" FontFamily="Arial Black" Margin="554,77,-44,466"/>
         <dxe:ToggleSwitch
             IsChecked="{Binding IsAutoRotationEnabled, Mode=TwoWay}"
             Command="{Binding ToggleRotationCommand}"
             Content="Toggle Rotation"
             dxe:EditorAppearanceProperties.CheckedStateBackground="#FFFF7912"
             HorizontalAlignment="Left"
-            Margin="582,520,0,0"
+            Margin="10,54,0,0"
             VerticalAlignment="Top"
             CornerRadius="2"
             ToggleSwitchWidth="70"
@@ -83,7 +82,9 @@
             Foreground="White"
             RenderTransformOrigin="0.486,0.58"
             BorderThickness="1.0"
-            Height="25" />
+            Height="32" />
         <dx:SimpleButton Content="SimpleButton" HorizontalAlignment="Left" Height="0" Margin="441,504,0,0" VerticalAlignment="Top" Width="0"/>
+        <Label Content="Управление VM - Панель" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18" Height="30" Width="213"/>
+        <TextBlock Text="Расписание:" FontFamily="Arial Black" Foreground="White" Margin="507,21,138,522"/>
     </Grid>
 </UserControl>

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Manager.Core.Models;
 
@@ -85,14 +86,56 @@ namespace Manager.Core
                 throw new InvalidOperationException("VMrun path not found in general configuration.");
             }
 
-            Process.Start(new ProcessStartInfo(config.General.VmrunPath, $"stop \"{vmPath}\"")
+            // Check if VM is running
+            var checkStateInfo = new ProcessStartInfo(config.General.VmrunPath, $"list")
             {
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true
-            });
+            };
+
+            using (var checkProcess = Process.Start(checkStateInfo))
+            {
+                if (checkProcess != null)
+                {
+                    string output = checkProcess.StandardOutput.ReadToEnd();
+                    checkProcess.WaitForExit();
+
+                    if (!output.Contains(vmPath))
+                    {
+                        // VM is not running
+                        return;
+                    }
+                }
+            }
+
+            var stopInfo = new ProcessStartInfo(config.General.VmrunPath, $"stop \"{vmPath}\" soft")
+            {
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            };
+
+            using (var stopProcess = Process.Start(stopInfo))
+            {
+                if (stopProcess != null)
+                {
+                    string output = stopProcess.StandardOutput.ReadToEnd();
+                    string error = stopProcess.StandardError.ReadToEnd();
+                    stopProcess.WaitForExit();
+
+                    if (stopProcess.ExitCode != 0)
+                    {
+                        throw new InvalidOperationException($"Failed to stop VM. Output: {output}. Error: {error}");
+                    }
+                }
+            }
         }
+
+
+
 
         public void StopAllVMs()
         {
@@ -237,12 +280,14 @@ namespace Manager.Core
             return _schedulerService.GetCurrentShift();
         }
 
-        public void ManageVMs(string currentShift)
+        public async Task ManageVMsAsync(string currentShift)
         {
             var vms = GetVMs();
+            var now = DateTime.Now;
+
             foreach (var vm in vms)
             {
-                if (vm.Shift == currentShift && vm.Status == "Active")
+                if (vm.Shift == currentShift && vm.Status == "Active" && !IsDuringShutdownPeriod(now))
                 {
                     StartVM(vm.Name);
                 }
@@ -251,6 +296,11 @@ namespace Manager.Core
                     StopVM(vm.Name);
                 }
             }
+        }
+
+        private bool IsDuringShutdownPeriod(DateTime now)
+        {
+            return now.Minute >= 28 && now.Minute <= 31;
         }
     }
 

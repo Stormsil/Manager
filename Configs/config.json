@@ -1,19 +1,19 @@
 {
   "VMs": null,
   "Schedule": {
-    "DayStart1": "03:48",
-    "DayEnd1": "03:50",
-    "DayStart2": "03:57",
-    "DayEnd2": "03:59",
-    "NightStart1": "04:00",
-    "NightEnd1": "04:04",
-    "NightStart2": "02:12",
-    "NightEnd2": "03:47"
+    "DayStart1": "10:31",
+    "DayEnd1": "16:30",
+    "DayStart2": "22:31",
+    "DayEnd2": "04:30",
+    "NightStart1": "04:31",
+    "NightEnd1": "10:30",
+    "NightStart2": "16:31",
+    "NightEnd2": "22:30"
   },
   "Grid": {
-    "Rows": 2,
-    "Columns": 4,
-    "CellWidth": 380,
-    "CellHeight": 560
+    "Rows": 3,
+    "Columns": 8,
+    "CellWidth": 338,
+    "CellHeight": 379
   }
 }
