@@ -13,5 +13,15 @@ namespace Manager.MVVM.View
             var vmService = new VMService(schedulerService); // Создаем экземпляр VMService
             DataContext = new ControlVMHomeViewModel(vmService, schedulerService); // Передаем vmService в конструктор
         }
+
+        private void SimpleButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void SimpleButton_Click_1(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

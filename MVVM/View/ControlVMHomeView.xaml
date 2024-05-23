@@ -20,40 +20,57 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="StatusCellStyle" TargetType="{x:Type DataGridCell}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Status}" Value="Active">
+                    <Setter Property="Foreground" Value="#FF21D121"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Status}" Value="Stopped">
+                    <Setter Property="Foreground" Value="#FFFF7912"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="OnlineStatusCellStyle" TargetType="{x:Type DataGridCell}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding OnlineStatus}" Value="Online">
+                    <Setter Property="Foreground" Value="#FF21D121"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding OnlineStatus}" Value="Offline">
+                    <Setter Property="Foreground" Value="Red"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid Height="568" VerticalAlignment="Top">
         <DataGrid Margin="12,109,10,42" x:Name="dataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
                   ItemsSource="{Binding VMs}"
                   Background="#FF191919" Foreground="White" BorderBrush="#FF191919" HeadersVisibility="Column"
                   HorizontalGridLinesBrush="#FF424242" VerticalGridLinesBrush="#FF424242" RowBackground="#FF2D3031"
-                  AlternatingRowBackground="#FF424242">
+                  AlternatingRowBackground="#FF2D3031" RowHeight="24" FontSize="14">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
                     <Setter Property="Background" Value="#FF191919"/>
                     <Setter Property="Foreground" Value="White"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                 </Style>
-                <Style TargetType="{x:Type DataGridCell}">
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="80"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="80"   CellStyle="{StaticResource StatusCellStyle}"/>
                 <DataGridTextColumn Header="Shift" Binding="{Binding Shift}" Width="80"/>
-                <DataGridTextColumn Header="Online status" Binding="{Binding OnlineStatus}" Width="100"/>
-                <DataGridTextColumn Header="VM Name" Binding="{Binding Name}" Width="240"/>
-                <DataGridTextColumn Header="Disk" Binding="{Binding Disk}" Width="60"/>
-                <DataGridTextColumn Header="LAN" Binding="{Binding LAN}" Width="60"/>
-                <DataGridTextColumn Header="Cell" Binding="{Binding Cell}" Width="80"/>
+                <DataGridTextColumn Header="Online status" Binding="{Binding OnlineStatus}" Width="100" CellStyle="{StaticResource OnlineStatusCellStyle}"/>
+                <DataGridTextColumn Header="VM Name" Binding="{Binding Name}" Width="305"/>
+                <DataGridTextColumn Header="Disk" Binding="{Binding Disk}" Width="50"/>
+                <DataGridTextColumn Header="LAN" Binding="{Binding LAN}" Width="55"/>
+                <DataGridTextColumn Header="Cell" Binding="{Binding Cell}" Width="50"/>
             </DataGrid.Columns>
         </DataGrid>
         <dx:SimpleButton Style="{StaticResource CustomSimpleButtonStyle}" Command="{Binding RefreshCommand}"
-                         Content="Обновить данные" Width="150" Height="40" Margin="136,52,0,0"
-                         Padding="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
+                         Content="Обновить данные" Width="150" Height="40" Margin="175,52,0,0"
+                         Padding="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" Click="SimpleButton_Click" Visibility="Hidden"/>
         <dx:SimpleButton Style="{StaticResource CustomSimpleButtonStyle}" Command="{Binding ArrangeWindowsCommand}"
-                         Content="Расположить окна" Width="150" Height="40" Margin="0,52,0,0"
-                         Padding="10,5" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14"/>
+                         Content="Расположить окна" Width="150" Height="40" Margin="100,54,0,0"
+                         Padding="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
         <TextBlock Text="Текущая смена:" FontFamily="Arial Black" Foreground="White" Margin="13,533,609,10"/>
         <TextBlock Text="День:" Foreground="White" FontFamily="Arial Black" Margin="508,45,194,498"/>
         <TextBlock Text="Ночь:" Foreground="White" FontFamily="Arial Black" Margin="508,76,194,467"/>
